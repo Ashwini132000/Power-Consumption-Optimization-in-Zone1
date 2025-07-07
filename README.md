@@ -235,11 +235,8 @@ This ensured that all selected features were normalized to mean 0 and variance 1
 | Decision Tree Regressor | 0.9982                 | 0.2671                 | 4205.5229 | 47340547.6567 | 6880.4467 |
 | Random Forest Regressor | 0.9099                 | 0.6205                 | 3475.5517 | 24512550.1897 | 4951.0150 |
 | XGBoost Regressor       | 0.8062                 | 0.5943                 | 3692.2429 | 26202533.6600 | 5118.8410 |
-| Support Vector Regressor| 0.1412                 | 0.1466                 | 5921.9808 | 55125072.1834 | 7424.6260 |
-
---- 
-
-### Conclusion  
+| Support Vector Regressor| 0.1412                 | 0.1466                 | 5921.9808 | 55125072.1834 | 7424.6260 |  
+ 
 🏆 **Best Model: Random Forest** (better performance on all evaluation metrics)  
 **Reason for Selection:**  
 - **Highest Testing Accuracy (R²):** `0.6205`  
@@ -247,6 +244,69 @@ This ensured that all selected features were normalized to mean 0 and variance 1
 - **Lowest MSE:** `24512550.18`  
 - **Lowest RMSE:** `4951.01`
 
+---  
+
+## ⚠️ Limitations
+
+- **Moderate R² Score:**  
+  Although the Random Forest model had the best performance, an R² score of 0.62 indicates that a portion of the variability in power consumption remains unexplained.
+
+- **No Temporal Features Included:**  
+  Features such as time of day, date, or seasonality were not included, which limits the model's ability to capture cyclical trends in electricity usage.
+
+- **Static Dataset Used:**  
+  The model was trained on historical data and doesn't currently adapt to live or changing conditions in real-time.
+
+- **Outlier Capping and Skewness Correction Were Basic:**  
+  While outlier treatment and skewness correction were performed, more advanced techniques (like IQR-based adaptive capping or Box-Cox transformation) could yield better results.
+
+- **External Factors Not Considered:**  
+  The model does not account for socio-economic or policy-driven factors that might also influence power consumption (e.g., holidays, industrial activity).
+
+---  
+
+## 🔚 Conclusion  
+
+This project aimed to predict **Zone 1 power consumption in Wellington, New Zealand** using environmental and meteorological factors, in order to support efficient and sustainable energy management.
+
+### 📌 Summary:
+
+1. **Data Cleaning & Preparation**
+   - Processed a dataset of **52,583 records**
+   - Converted object columns like `Temperature` and `Humidity` to numeric
+   - Handled missing values using **median imputation**
+   - Dropped irrelevant column `S_no`  
+
+2. **Exploratory Data Analysis & Feature Selection**
+   - Detected and **capped outliers** in numerical columns to reduce the influence of extreme values
+   - Applied **skewness reduction** to normalize heavily skewed distributions
+   - Used a correlation heatmap to detect multicollinearity and weak features
+   - Dropped features: `Air_Quality_Index_PM`, `Cloudiness`, and `diffuse_flows`
+   - Found `Temperature` to be strongly correlated with power consumption (+0.56)  
+
+4. **Model Building & Evaluation**
+   - Trained five regression models:  
+     `Linear Regression`, `Decision Tree`, `Random Forest`, `XGBoost`, `SVR`
+   - Evaluated using: **R² Score, MAE, MSE, RMSE**
+   - Since the goal was to reduce prediction error, the model was selected **based on lowest MAE and RMSE**
+   - **Best Model: Random Forest Regressor**
+     - R² Score: `0.6205`
+     - MAE: `3475.55`
+     - MSE: `24512550.18`
+     - RMSE: `4951.01`  
+
+5. **Feature Importance (from Random Forest)**
+   - `Temperature`: **0.50**
+   - `Humidity`: **0.21**
+   - `general_diffuse_flows`: **0.16**
+   - `Wind_Speed`: **0.13**  
+
+### 🎯 Final Outcome:
+The Random Forest model provided the most accurate and consistent predictions. It effectively captures the influence of environmental variables on energy usage and can be used to:  
+- Forecast power demand in Zone 1
+- Minimize energy waste
+- Support real-time and sustainable energy planning
+  
 ---  
 
 ## 🧑‍💻 Author
