@@ -38,6 +38,23 @@ To develop a **Machine Learning model** that:
 
 ---  
 
+## 🛠️ Tools & Technologies
+
+- **Programming Language:** Python  
+- **Data Manipulation:** Pandas, NumPy  
+- **Visualization:** Matplotlib, Seaborn  
+- **Modeling & Evaluation:**  
+  - Scikit-learn (Linear Regression, Decision Tree, Random Forest, SVR)  
+  - XGBoost  
+- **Environment:** Jupyter Notebook  
+- **Other Techniques:**  
+  - Feature Engineering  
+  - Outlier Capping  
+  - Skewness Reduction  
+  - Correlation Heatmap Analysis  
+
+---  
+
 ## 📚 Project Workflow  
 
 ### 1️⃣ Import Necessary libraries  
